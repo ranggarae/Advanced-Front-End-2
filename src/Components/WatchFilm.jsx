@@ -150,7 +150,7 @@ const WatchFilm = ({ redirectPath = "/beranda" }) => {
 
       {/* Subtitles Popup */}
       {subtitlePopupVisible && (
-        <div className="absolute bottom-[370px] md:bottom-[290px] right-[32%] transform translate-x-[50%] md:right-[20%] bg-gray-800 text-white rounded-lg shadow-lg p-4 w-52">
+        <div className="absolute bottom-[370px] md:bottom-[290px] right-[32%] transform translate-x-[50%] md:right-[35%] bg-gray-800 text-white rounded-lg shadow-lg p-4 w-52">
           <div className="flex justify-between">
             <div>
               <h4 className="font-semibold mb-2">Audio</h4>
@@ -167,7 +167,7 @@ const WatchFilm = ({ redirectPath = "/beranda" }) => {
 
       {/* Speed Popup */}
       {speedPopupVisible && (
-        <div className="absolute bottom-[365px] md:bottom-[290px] right-[20%] transform translate-x-[50%] md:right-[20%] bg-gray-800 text-white rounded-lg shadow-lg p-4 w-28">
+        <div className="absolute bottom-[365px] md:bottom-[290px] right-[20%] transform translate-x-[50%] md:right-[33%] bg-gray-800 text-white rounded-lg shadow-lg p-4 w-28">
           <h4 className="font-semibold mb-2">Kecepatan</h4>
           <ul className="space-y-1">
             <li className="text-sm">0.5x</li>
@@ -181,7 +181,7 @@ const WatchFilm = ({ redirectPath = "/beranda" }) => {
 
       {/* Premium Popup */}
       {premiumPopupVisible && (
-        <div className="absolute bottom-[250px] md:bottom-[270px] right-[50%] transform translate-x-[50%] md:right-[500px] bg-black text-white rounded-lg shadow-lg p-4 md:p-6 w-[70%] md:w-[80%] text-center">
+        <div className="absolute bottom-[250px] md:bottom-[290px] right-[50%] transform translate-x-[50%] md:right-[50%] bg-black text-white rounded-lg shadow-lg p-4 md:p-6 w-[70%] md:w-[30%] text-center">
           <h4 className="text-xl font-bold mb-2">Layanan Premium🌟</h4>
           <p className="text-sm mb-4">Tingkatkan paket anda untuk dapat menonton video ini.</p>
           <h5 className="text-md font-semibold mb-3">Kenapa Harus Berlangganan?</h5>

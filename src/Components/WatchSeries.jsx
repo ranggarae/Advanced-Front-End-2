@@ -182,7 +182,7 @@ const WatchSeries = () => {
 
       {/* Next Popup */}
       {NextPopupVisible && (
-        <div className="absolute bottom-[140px] md:bottom-[180px] right-[50%] transform translate-x-[50%] md:right-[365px] bg-gray-800 text-white rounded-lg shadow-lg p-4 w-96">
+        <div className="absolute bottom-[140px] md:bottom-[300px] right-[50%] transform translate-x-[50%] md:right-[40%] bg-gray-800 text-white rounded-lg shadow-lg p-4 w-96">
           <h4 className="font-semibold mb-2">Episode Selanjutnya</h4>
           <div className="flex space-x-4">
             <img
@@ -203,7 +203,7 @@ const WatchSeries = () => {
 
       {/* Playlist Popup */}
       {playlistPopupVisible && (
-        <div className="absolute bottom-[15px] md:bottom-[180px] right-[50%] transform translate-x-[50%] md:right-[365px] bg-gray-800 text-white rounded-lg shadow-lg p-4 w-90">
+        <div className="absolute bottom-[15px] md:bottom-[300px] right-[50%] transform translate-x-[50%] md:right-[40%] bg-gray-800 text-white rounded-lg shadow-lg p-4 w-90">
           <h4 className="font-semibold mb-2">Episode Selanjutnya</h4>
           <ul className="space-y-2">
             <li className="text-sm font-bold">Episode 1</li>
@@ -231,7 +231,7 @@ const WatchSeries = () => {
 
       {/* Subtitles Popup */}
       {subtitlePopupVisible && (
-        <div className="absolute bottom-[200px] md:bottom-[180px] right-[50%] transform translate-x-[50%] md:right-[365px] bg-gray-800 text-white rounded-lg shadow-lg p-4 w-80">
+        <div className="absolute bottom-[200px] md:bottom-[300px] right-[50%] transform translate-x-[50%] md:right-[38%] bg-gray-800 text-white rounded-lg shadow-lg p-4 w-80">
           <div className="flex justify-between">
             <div>
               <h4 className="font-semibold mb-2">Audio</h4>
@@ -248,7 +248,7 @@ const WatchSeries = () => {
 
       {/* Speed Popup */}
       {speedPopupVisible && (
-        <div className="absolute bottom-[130px] md:bottom-[180px] right-[50%] transform translate-x-[50%] md:right-[365px] bg-gray-800 text-white rounded-lg shadow-lg p-4 w-40">
+        <div className="absolute bottom-[130px] md:bottom-[300px] right-[50%] transform translate-x-[50%] md:right-[34%] bg-gray-800 text-white rounded-lg shadow-lg p-4 w-40">
           <h4 className="font-semibold mb-2">Kecepatan</h4>
           <ul className="space-y-1">
             <li className="text-sm">0.5x</li>
