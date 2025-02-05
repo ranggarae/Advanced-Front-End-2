@@ -17,12 +17,11 @@ const Login = () => {
         backgroundImage: `url(${backgroundImage})`,
       }}
     >
-      <div className="bg-black bg-opacity-70 p-8 rounded-lg shadow-lg w-96">
+      <div className="bg-black/70 p-6 rounded-lg shadow-lg w-72">
         <div className="flex items-center justify-center mb-6">
-          <img src="/logo.png" alt="Logo" className="w-8 h-8 mr-2" />
-          <h2 className="text-white text-2xl font-bold">CHILL</h2>
+          <img src="/logo.png" alt="Logo" className="w-6/12" />
         </div>
-        <h3 className="text-white text-center text-lg mb-6">Masuk</h3>
+        <h3 className="text-white text-center text-lg">Masuk</h3>
         <p className="text-gray-400 text-center mb-6">
           Selamat datang kembali!
         </p>
@@ -64,10 +63,9 @@ const Login = () => {
             </div>
           </div>
           <div className="flex justify-between text-sm mb-6">
-          <Link to="/register" className="text-gray-400">
-  Belum punya akun? <span className="text-blue-500">Daftar</span>
-</Link>
-            <a href="/forgot-password" className="text-blue-500">
+          <Link to="/register" className="text-gray-400">Belum punya akun? <span className="text-blue-500">Daftar</span>
+          </Link>
+            <a href="/" className="text-blue-500 ml-20">
               Lupa kata sandi?
             </a>
           </div>
@@ -77,7 +75,7 @@ const Login = () => {
           >
             Masuk
           </button>
-          <div className="text-center mt-6">
+          <div className="text-center mt-2">
             <p className="text-gray-400 mb-2">Atau</p>
             <button
               type="button"

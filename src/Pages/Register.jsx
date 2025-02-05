@@ -1,5 +1,5 @@
 import React from 'react';
-import backgroundImage from '../assets/register.png'; // Background image
+import backgroundImage from '../assets/register.png'; 
 import { Link } from "react-router-dom";
 
 
@@ -8,15 +8,14 @@ const Register = () => {
     <div
       className="flex items-center justify-center min-h-screen bg-cover bg-center"
       style={{
-        backgroundImage: `url(${backgroundImage})`, // Use local background image
+        backgroundImage: `url(${backgroundImage})`, 
       }}
     >
-      <div className="bg-black bg-opacity-40 p-8 rounded-lg shadow-lg w-96">
+      <div className="bg-black/40 p-8 rounded-lg shadow-lg w-72">
         <div className="flex items-center justify-center mb-6">
-          <img src="/logo.png" alt="Logo" className="w-8 h-8 mr-2" />
-          <h2 className="text-white text-2xl font-bold">CHILL</h2>
+          <img src="/logo.png" alt="Logo" className="w-6/12" />
         </div>
-        <h3 className="text-white text-center text-lg mb-6">Daftar</h3>
+        <h3 className="text-white text-center text-lg">Daftar</h3>
         <p className="text-gray-400 text-center mb-6">Selamat datang!</p>
         <form>
           <div className="mb-4">
@@ -88,7 +87,7 @@ const Register = () => {
           >
             Daftar
           </button>
-          <div className="text-center mt-6">
+          <div className="text-center">
             <p className="text-gray-400 mb-2">Atau</p>
             <button
               type="button"
