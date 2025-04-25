@@ -1,35 +1,32 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 
-const PopupFilm = ({ redirectPath0 = "/beranda" }) => {
+const PopupFilm = ({onClose}) => {
   const [isVisible,] = useState(true);
-  const navigate = useNavigate();
 
   if (!isVisible) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50">
-      <div className="bg-gray-900 text-white w-full md:w-[600px] rounded-lg shadow-lg max-h-[80vh] overflow-hidden hover:overflow-y-auto">
+    <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-10">
+      <div className="bg-gray-900 text-white w-full md:w-lg rounded-lg shadow-lg">
         {/* Header Section */}
         <div className="relative">
           <img
             src="/PopupHeroFilm.png"
             alt="Ted Lasso"
-            className="w-full h-full object-cover"
+            className="object-cover"
           />
           <button
-            className="absolute top-3 right-3 bg-gray-800 rounded-full w-8 h-8 flex items-center justify-center hover:bg-gray-700"
-            onClick={() => navigate(redirectPath0)}>
-            <span className="text-white text-sm">✕</span>
+            className="absolute top-3 right-3 bg-gray-800 rounded-full size-6 md:size-8 flex items-center justify-center hover:bg-gray-700"
+            onClick={onClose}>✕
           </button>
 
-          <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black via-transparent to-transparent p-4">
-            <h2 className="text-xl md:text-2xl font-bold">Guardian Of The Galaxy Vol. 3 "Example"</h2>
+          <div className="absolute bottom-0 left-0 right-0  p-4">
+            <h2 className="text-base md:text-2xl font-bold">Guardian Of The Galaxy Vol. 3 "Example"</h2>
             <div className="flex items-center space-x-2 md:space-x-4 mt-2">
-              <button className="bg-blue-600 text-white px-3 py-1 md:px-4 md:py-2 rounded-2xl hover:bg-blue-700">Mulai</button>
+              <button className="bg-blue-600 text-white text-xs md:text-base px-1 py-1 md:px-2 md:py-2 rounded-2xl hover:bg-blue-700">Mulai</button>
               <div className="flex items-center space-x-2">
-                <button className="w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center hover:bg-gray-600">
-                  <img src="/Add.svg" alt="Add" className="w-6 h-6 md:w-8 md:h-8" />
+                <button className="size-6 md:size-8 rounded-full flex items-center justify-center hover:bg-gray-600">
+                  <img src="/Add.svg" alt="Add"/>
                 </button>
                 <img src="/Premium.svg" alt="Premium" className="w-16 h-16 md:w-20 md:h-20" />
               </div>

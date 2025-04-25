@@ -4,12 +4,24 @@ import backgroundImage from "../assets/login.png";
 import { Link } from "react-router-dom";
 
 const Login = () => {
-  const navigate = useNavigate(); // Hook untuk navigasi
+  const navigate = useNavigate();
 
   const handleLogin = (e) => {
     e.preventDefault();
-    navigate("/beranda"); // Langsung navigasi ke halaman Beranda
+    const username = e.target.username.value;
+    const password = e.target.password.value;
+  
+    const users = JSON.parse(localStorage.getItem("users") || "[]");
+    const match = users.find(u => u.username === username && u.password === password);
+  
+    if (match) {
+      localStorage.setItem("loggedInUser", JSON.stringify(match));
+      navigate("/beranda");
+    } else {
+      alert("Username atau password salah.");
+    }
   };
+  
   return (
     <div
       className="flex items-center justify-center min-h-screen bg-cover bg-center"

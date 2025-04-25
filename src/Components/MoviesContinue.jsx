@@ -1,48 +1,55 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import WatchSeries from "./WatchSeries";
-import PopupSeriesPremium from "./PopupSeriesPremium";
+import PopupSeriesPremium from "./PopupSeriesPremium"; 
 
-
-const Movies = ({ movies, redirectPath }) => {
+const MoviesContinue = ({ movies, redirectPath }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [itemWidth, setItemWidth] = useState(300); // Default width, akan diupdate berdasarkan lebar layar
+  const containerRef = useRef(null); // Ref untuk container film
   const [showWatch, setShowWatch] = useState(false); 
   const [showDetail, setShowDetail] = useState(false); 
 
+  // Fungsi untuk mengupdate lebar item film berdasarkan lebar layar
+  useEffect(() => {
+    const updateItemWidth = () => {
+      if (containerRef.current) {
+        const containerWidth = containerRef.current.offsetWidth;
+        // Menentukan lebar item film berdasarkan lebar layar
+        if (containerWidth >= 1024) {
+          setItemWidth(80); // Desktop: lebar item 300px
+        } else if (containerWidth >= 768) {
+          setItemWidth(190); // Tablet: lebar item 250px
+        } else if (containerWidth >= 480) {
+          setItemWidth(250); // Mobile landscape: lebar item 200px
+        } else {
+          setItemWidth(150); // Mobile portrait: lebar item 150px
+        }
+      }
+    };
+
+    // Panggil fungsi updateItemWidth saat komponen dimount dan saat ukuran layar berubah
+    updateItemWidth();
+    window.addEventListener("resize", updateItemWidth);
+
+    // Bersihkan event listener saat komponen di-unmount
+    return () => window.removeEventListener("resize", updateItemWidth);
+  }, []);
+
   const handlePrev = () => {
     setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? movies.length - 1 : prevIndex - 1
+      prevIndex === 0 ? movies.length - 1 : prevIndex - 0.8
     );
   };
 
   const handleNext = () => {
     setCurrentIndex((prevIndex) =>
-      prevIndex >= movies.length - 1 ? 0 : prevIndex + 1
+      prevIndex === movies.length - 1 ? 0 : prevIndex + 0.8
     );
-  };
-
-  const isInMyList = (movie) => {
-    const myList = JSON.parse(localStorage.getItem("mylist") || "[]");
-    return myList.some((m) => m.title === movie.title);
-  };
-  
-  const toggleMyList = (movie) => {
-    const myList = JSON.parse(localStorage.getItem("mylist") || "[]");
-    const exists = myList.some((m) => m.title === movie.title);
-    let newList;
-  
-    if (exists) {
-      newList = myList.filter((m) => m.title !== movie.title);
-    } else {
-      newList = [...myList, movie];
-    }
-  
-    localStorage.setItem("mylist", JSON.stringify(newList));
   };
 
   const Hover = ({ movie }) => {
     const [hover, setHover] = useState(false);
-    const [added, setAdded] = useState(isInMyList(movie));
     const navigate = useNavigate();
 
     // Fungsi untuk toggle hover state
@@ -53,13 +60,13 @@ const Movies = ({ movies, redirectPath }) => {
     return (
       <div
         className={`relative bg-gray-900 justify-items-center rounded-lg overflow-hidden shadow-md mx-2 transition-all duration-300 ${
-          hover ? "w-[150px] h-[200px] md:w-[250px] md:h-[300px] z-50" : "w-[120px] h-[180px] md:w-[240px] md:h-[360px]"
+          hover ? "w-[180px] h-[210px] md:w-[325px] md:h-[325px]" : "w-[150px] h-[85px] md:w-[305px] md:h-[170px]"
         }`}
         onClick={toggleHover} // Menggunakan onClick untuk toggle hover
       >
         {/* Gambar Film */}
         <img
-          src={hover ? movie.image : movie.image1}
+          src={movie.image}
           alt={movie.title}
           className="w-full object-cover rounded-lg"
         />
@@ -72,18 +79,6 @@ const Movies = ({ movies, redirectPath }) => {
                 onClick={() => setShowWatch(true)}>
                 <img src="play.svg" alt="play" />
               </button>
-
-              <button
-              className="w-8 h-8 md:w-10 md:h-10 bg-gray-900 rounded-full flex items-center justify-center mb-2"
-              onClick={(e) => {
-              e.stopPropagation();
-              toggleMyList(movie);
-              setAdded(!added);
-              }}
-              >
-              <img src={added ? "check.svg" : "Add.svg"} alt="add" />
-              </button>
-
 
               <button className="w-8 h-8 md:w-10 md:h-10 bg-gray-900 rounded-full flex items-center justify-center mb-2"
                 onClick={() => setShowDetail(true)}>
@@ -114,8 +109,8 @@ const Movies = ({ movies, redirectPath }) => {
         {!hover && (
           <div className="absolute bottom-0 left-0 w-full via-transparent to-transparent p-2 md:p-4">
             <div className="flex justify-between items-center">
-              <h3 className="text-white text-xs md:text-2xl font-bold">{movie.title}</h3>
-              <span className="text-gray-300 text-xs md:text-2xl">⭐ {movie.rating}</span>
+              <h3 className="text-white text-xs md:text-xl font-bold">{movie.title}</h3>
+              <span className="text-gray-300 text-xs md:text-xl">⭐ {movie.rating}</span>
             </div>
           </div>
         )}
@@ -135,10 +130,10 @@ const Movies = ({ movies, redirectPath }) => {
         </button>
 
         {/* Daftar Film */}
-        <div className="flex overflow-x-scroll md:overflow-x-hidden w-full">
+        <div className="flex overflow-x-scroll md:overflow-x-hidden w-full" ref={containerRef}>
           <div
             className="flex transition-transform duration-300"
-            style={{ transform: `translateX(-${currentIndex * 240}px)` }}
+            style={{ transform: `translateX(-${currentIndex * itemWidth}px)` }}
           >
             {movies.map((movie, index) => (
               <Hover key={index} movie={movie} />
@@ -164,4 +159,4 @@ const Movies = ({ movies, redirectPath }) => {
   );
 };
 
-export default Movies;
+export default MoviesContinue;

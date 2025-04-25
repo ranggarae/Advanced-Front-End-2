@@ -20,10 +20,10 @@ const Genre = () => {
   ];
 
   return (
-    <div className="relative inline-block">
+    <div className="relative inline-flex z-10">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="bg-gray-800 text-white font-semibold py-2 px-4 rounded flex items-center"
+        className="bg-black text-white font-semibold py-1 px-1 rounded flex items-center text-xs md:text-lg ml-24 md:ml-0 "
       >
         Genre
         <svg
@@ -40,7 +40,7 @@ const Genre = () => {
         </svg>
       </button>
       {isOpen && (
-        <div className="absolute mt-2 bg-gray-900 text-white rounded shadow-lg p-4 grid grid-cols-2 gap-2 z-10 w-72 max-w-[350px]">
+        <div className="absolute mt-6 md:mt-9 bg-gray-900 text-white rounded shadow-lg p-4 grid grid-cols-2 gap-2 z-10 w-52 md:w-72 text-xs md:text-base">
           {genres.map((genre, index) => (
             <div
               key={index}

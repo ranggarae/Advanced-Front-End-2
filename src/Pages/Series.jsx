@@ -2,10 +2,11 @@ import React from 'react';
 import HeroSection from '../Components/HeroSection';
 import Navbar from '../Components/Navbar';
 import Genre from '../Components/Genre';
-import ContinueWatching from '../Components/ContinueWatching';
+import MoviesContinue from '../Components/MoviesContinue';
 import Movies from '../Components/Movies';
 import Footer from '../Components/Footer';
-import ListMovies from '../Components/ListMovies';
+import ListMovies from '../Data/ListMovies.json';
+import ListContinue from '../Data/ListContinue.json';
 
 const shuffleArray = (array) => {
   const shuffled = [...array];
@@ -26,13 +27,13 @@ function Series() {
   return (
     <>
       <Navbar />
-      <div className="absolute top-16 md:top-28 left-4 md:left-32 z-40">
+      <div className="absolute top-14 md:top-28 left-4 md:left-72 z-50">
         <Genre />
       </div>
       <HeroSection index={1} redirectPath="/watchseries" redirectPath0="/detailseries" />
       <div className="bg-black p-4 md:p-8">
         <h2 className="text-xl md:text-2xl font-bold mb-4 ml-4 md:ml-20 text-white">Melanjutkan Tonton Series</h2>
-        <ContinueWatching movies={shuffledMovies3} redirectPath="/watchseries" redirectPath0="/detailseries" />
+        <MoviesContinue movies={shuffledMovies3} redirectPath="/watchseries" redirectPath0="/detailseries" />
       </div>
       <div className="bg-black p-4 md:p-8">
         <h2 className="text-xl md:text-2xl font-bold mb-4 ml-4 md:ml-20 text-white">Series Persembahan Chill</h2>

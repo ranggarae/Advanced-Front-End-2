@@ -5,9 +5,11 @@ const ProfilSaya = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen bg-black text-white flex justify-center items-center">
-      <div className="absolute top-28 md:top-24 left-6 md:left-80 text-2xl md:text-3xl font-bold">Profil Saya</div>
-      <div className="w-full max-w-4xl bg-gray-900 rounded-lg p-4 md:p-8 flex flex-col md:flex-row gap-4 md:gap-8 mx-4">
+    <div className="relative flex bg-black text-white justify-center items-center min-h-screen">
+      <div className="absolute top-2 left-6 p-6 text-2xl md:text-3xl font-bold">
+        Profil Saya
+      </div>
+      <div className="w-full max-w-4xl bg-gray-900 rounded-lg p-4 md:p-8 flex flex-col md:flex-row gap-4 md:gap-8 mx-2">
         {/* Left Section */}
         <div className="w-full md:w-1/2 flex flex-col items-center">
           <div className="relative">
@@ -16,11 +18,15 @@ const ProfilSaya = () => {
               alt="Profile"
               className="w-16 h-16 md:w-24 md:h-24 rounded-full object-cover"
             />
-            <button className="absolute bottom-0 right-0 bg-blue-600 text-white rounded-full px-0.5 py-0.5 text-xs">Ubah Foto</button>
+            <button className="absolute bottom-0 right-0 bg-blue-600 text-white rounded-full px-0.5 py-0.5 text-xs">
+              Ubah Foto
+            </button>
           </div>
           <p className="text-sm mt-2 text-gray-400">Maksimal 2MB</p>
           <div className="mt-4 w-full">
-            <label className="block text-sm text-gray-400 mb-2">Nama Pengguna</label>
+            <label className="block text-sm text-gray-400 mb-2">
+              Nama Pengguna
+            </label>
             <div className="relative">
               <input
                 type="text"
@@ -48,7 +54,9 @@ const ProfilSaya = () => {
             </div>
           </div>
           <div className="mt-4 w-full">
-            <label className="block text-sm text-gray-400 mb-2">Kata Sandi</label>
+            <label className="block text-sm text-gray-400 mb-2">
+              Kata Sandi
+            </label>
             <div className="relative">
               <input
                 type="password"
@@ -61,7 +69,10 @@ const ProfilSaya = () => {
               </button>
             </div>
           </div>
-          <button className="mt-6 bg-blue-600 w-full py-2 rounded-lg text-white font-semibold hover:bg-blue-700" onClick={() => navigate("/beranda")}>
+          <button
+            className="mt-6 bg-blue-600 w-full py-2 rounded-lg text-white font-semibold hover:bg-blue-700"
+            onClick={() => navigate("/beranda")}
+          >
             Simpan
           </button>
         </div>
@@ -69,7 +80,11 @@ const ProfilSaya = () => {
         {/* Right Section */}
         <div className="w-full md:w-1/2 h-48 bg-gray-800 rounded-lg p-4 md:p-6 flex flex-col items-center justify-center">
           <div className="flex items-center mb-2">
-            <img src="/Warning.svg" alt="Warning" className="w-12 h-12 md:w-16 md:h-16 mr-2" />
+            <img
+              src="/Warning.svg"
+              alt="Warning"
+              className="w-12 h-12 md:w-16 md:h-16 mr-2"
+            />
             <p className="text-sm md:text-lg font-semibold text-gray-300 text-center">
               Saat ini anda belum berlangganan
             </p>
@@ -77,7 +92,10 @@ const ProfilSaya = () => {
           <p className="text-xs md:text-sm text-gray-400 text-center mb-4">
             Dapatkan Akses Tak Terbatas ke Ribuan Film dan Series Kesukaan Kamu!
           </p>
-          <button className="bg-gray-700 text-white px-4 py-2 rounded-lg hover:bg-gray-600" onClick={() => navigate("/paket")}>
+          <button
+            className="bg-gray-700 text-white px-4 py-2 rounded-lg hover:bg-gray-600"
+            onClick={() => navigate("/paket")}
+          >
             Mulai Berlangganan
           </button>
         </div>

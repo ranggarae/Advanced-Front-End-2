@@ -43,9 +43,9 @@ const Pembayaran01 = () => {
               <input
                 type="text"
                 placeholder="Masukkan kode voucher"
-                className="flex-1 px-4 py-2 rounded-lg bg-gray-900 text-gray-400 border border-gray-700 focus:border-blue-500 focus:outline-none"
+                className="px-2 py-0 rounded-lg bg-gray-900 text-gray-400 text-xs border border-gray-700 focus:border-blue-500 focus:outline-none"
               />
-              <button className="px-4 py-2 bg-gray-700 rounded-lg text-white hover:bg-gray-600">
+              <button className="px-4 py-2 bg-gray-700 rounded-lg text-white text-xs hover:bg-gray-600">
                 Gunakan
               </button>
             </div>

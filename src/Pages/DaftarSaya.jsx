@@ -1,7 +1,8 @@
 import MyList from "../Components/MyList";
 import Navbar from "../Components/Navbar";
 import Footer from "../Components/Footer";
-import ListMovies from '../Components/ListMovies'
+import ListMovies from '../Data/ListMovies.json';
+import ListContinue from '../Data/ListContinue.json';
 
 
 function DaftarSaya() {

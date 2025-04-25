@@ -2,7 +2,8 @@ import Navbar from "../Components/Navbar";
 import ProfilSaya from "../Components/ProfilSaya";
 import Footer from "../Components/Footer";
 import Movies from "../Components/Movies";
-import ListMovies from "../Components/ListMovies";
+import ListMovies from '../Data/ListMovies.json';
+import ListContinue from '../Data/ListContinue.json';
 
 function Profil() {
   return (

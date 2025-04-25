@@ -2,6 +2,28 @@ import React from 'react';
 import backgroundImage from '../assets/register.png'; 
 import { Link } from "react-router-dom";
 
+const handleRegister = (e) => {
+  e.preventDefault();
+  const username = e.target.username.value;
+  const password = e.target.password.value;
+  const confirm = e.target["confirm-password"].value;
+
+  if (!username || !password) return alert("Harap isi semua kolom.");
+  if (password !== confirm) return alert("Konfirmasi password tidak cocok.");
+
+  const users = JSON.parse(localStorage.getItem("users") || "[]");
+  const exists = users.find(u => u.username === username);
+
+  if (exists) {
+    alert("Username sudah terdaftar.");
+  } else {
+    users.push({ username, password });
+    localStorage.setItem("users", JSON.stringify(users));
+    alert("Berhasil daftar, silakan login.");
+    window.location.href = "/"; // redirect ke login
+  }
+};
+
 
 const Register = () => {
   return (
@@ -17,7 +39,7 @@ const Register = () => {
         </div>
         <h3 className="text-white text-center text-lg">Daftar</h3>
         <p className="text-gray-400 text-center mb-6">Selamat datang!</p>
-        <form>
+        <form onSubmit={handleRegister}>
           <div className="mb-4">
             <label
               htmlFor="username"

@@ -74,7 +74,7 @@ const ProfilSaya = () => {
             <h2 className="text-lg font-semibold">Akun Premium Individual ✨</h2>
             <p className="text-sm mt-1">Saat ini kamu sedang menggunakan akses akun premium</p>
           </div>
-          <p className="text-xs mt-4">Berlaku hingga 31 Desember 2023</p>
+          <p className="text-xs mt-4">Berlaku hingga 31 Desember 2025</p>
         </div>
       </div>
     </div>
