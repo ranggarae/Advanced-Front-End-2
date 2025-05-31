@@ -1,34 +1,39 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { setMovies } from '../store/redux/MoviesReducer'; // path sesuai struktur
+import { getListMovies } from '../services/api/ListMoviesApi';
+import { getListContinue } from '../services/api/ListContinueApi';
+
 import HeroSection from '../Components/HeroSection';
 import Navbar from '../Components/Navbar';
 import Movies from '../Components/Movies';
 import Footer from '../Components/Footer';
-import { useEffect, useState } from 'react';
-import { getListMovies } from '../services/api/ListMoviesApi';
-import { getListContinue } from '../services/api/ListContinueApi';
 import MoviesContinue from '../Components/MoviesContinue';
 
 function Beranda() {
-  const [movies, setMovies] = useState([]);
+  const dispatch = useDispatch();
+  const movies = useSelector(state => state.movies.list); // dari Redux store
   const [continueMovies, setContinueMovies] = useState([]);
 
   useEffect(() => {
-    getListMovies().then((data) => setMovies(data));
-    getListContinue().then((data) => setContinueMovies(data));
-  }, []);
+    getListMovies().then(data => dispatch(setMovies(data)));
+    getListContinue().then(data => setContinueMovies(data));
+  }, [dispatch]);
 
   const shuffleArray = (array) => {
-    const shuffled = [...array];
-    for (let i = shuffled.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-    }
-    return shuffled;
-  };
+  if (!Array.isArray(array)) return [];
+  const shuffled = [...array];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  return shuffled;
+};
 
-  const shuffledMovies0 = shuffleArray(movies);
-  const shuffledMovies1 = shuffleArray(movies);
-  const shuffledMovies2 = shuffleArray(movies);
+const shuffledMovies0 = shuffleArray(movies);
+const shuffledMovies1 = shuffleArray(movies);
+const shuffledMovies2 = shuffleArray(movies);
+
 
   return (
     <>
