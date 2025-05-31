@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import WatchSeries from "./WatchSeries";
 import PopupSeriesPremium from "./PopupSeriesPremium";
+import { addMovie, deleteMovie } from "../services/api/ListMoviesApi";
+
 
 
 const Movies = ({ movies, redirectPath }) => {
@@ -26,19 +28,22 @@ const Movies = ({ movies, redirectPath }) => {
     return myList.some((m) => m.title === movie.title);
   };
   
-  const toggleMyList = (movie) => {
-    const myList = JSON.parse(localStorage.getItem("mylist") || "[]");
-    const exists = myList.some((m) => m.title === movie.title);
-    let newList;
-  
-    if (exists) {
-      newList = myList.filter((m) => m.title !== movie.title);
-    } else {
-      newList = [...myList, movie];
-    }
-  
-    localStorage.setItem("mylist", JSON.stringify(newList));
-  };
+  const toggleMyList = async (movie) => {
+  const myList = JSON.parse(localStorage.getItem("mylist") || "[]");
+  const exists = myList.some((m) => m.title === movie.title);
+  let newList;
+
+  if (exists) {
+    newList = myList.filter((m) => m.title !== movie.title);
+    await deleteMovie(movie.id); // Hapus dari database jika ada
+  } else {
+    newList = [...myList, movie];
+    await addMovie(movie); // Tambah ke database
+  }
+
+  localStorage.setItem("mylist", JSON.stringify(newList));
+};
+
 
   const Hover = ({ movie }) => {
     const [hover, setHover] = useState(false);

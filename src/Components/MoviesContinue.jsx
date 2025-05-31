@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import WatchSeries from "./WatchSeries";
 import PopupSeriesPremium from "./PopupSeriesPremium"; 
 
+
 const MoviesContinue = ({ movies, redirectPath }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [itemWidth, setItemWidth] = useState(300); // Default width, akan diupdate berdasarkan lebar layar

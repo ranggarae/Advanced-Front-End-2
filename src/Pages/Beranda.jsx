@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setMovies } from '../store/redux/MoviesReducer'; // path sesuai struktur
-import { getListMovies } from '../services/api/ListMoviesApi';
+import { fetchMovies } from '../store/redux/MoviesReducer'; // ✅ Ganti dari setMovies
 import { getListContinue } from '../services/api/ListContinueApi';
 
 import HeroSection from '../Components/HeroSection';
@@ -12,28 +11,28 @@ import MoviesContinue from '../Components/MoviesContinue';
 
 function Beranda() {
   const dispatch = useDispatch();
-  const movies = useSelector(state => state.movies.list); // dari Redux store
+  const movies = useSelector(state => state.movies.items); // ✅ Ganti dari state.movies.list
   const [continueMovies, setContinueMovies] = useState([]);
 
   useEffect(() => {
-    getListMovies().then(data => dispatch(setMovies(data)));
+    dispatch(fetchMovies()); // ✅ Gunakan asyncThunk fetchMovies dari Redux
     getListContinue().then(data => setContinueMovies(data));
   }, [dispatch]);
 
   const shuffleArray = (array) => {
-  if (!Array.isArray(array)) return [];
-  const shuffled = [...array];
-  for (let i = shuffled.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-  }
-  return shuffled;
-};
+    if (!Array.isArray(array)) return [];
+    const shuffled = [...array];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
+  };
 
-const shuffledMovies0 = shuffleArray(movies);
-const shuffledMovies1 = shuffleArray(movies);
-const shuffledMovies2 = shuffleArray(movies);
-
+  const safeMovies = Array.isArray(movies) ? movies : [];
+  const shuffledMovies0 = shuffleArray(safeMovies);
+  const shuffledMovies1 = shuffleArray(safeMovies);
+  const shuffledMovies2 = shuffleArray(safeMovies);
 
   return (
     <>
