@@ -1,15 +1,24 @@
-import MyList from "../Components/MyList";
+import { useEffect, useState } from "react";
 import Navbar from "../Components/Navbar";
 import Footer from "../Components/Footer";
-import ListMovies from '../Data/ListMovies.json';
-import ListContinue from '../Data/ListContinue.json';
-
+import MyList from "../Components/MyList";
+import { getListMovies } from "../services/api/ListMoviesApi";
 
 function DaftarSaya() {
+  const [movies, setMovies] = useState([]);
+
+  useEffect(() => {
+    getListMovies().then((data) => setMovies(data));
+  }, []);
+
   return (
     <div>
       <Navbar />
-      <MyList movies={ListMovies} redirectPath="/watchdaftarsaya" redirectPath0="/detaildaftarsaya" />
+      <MyList
+        movies={movies}
+        redirectPath="/watchdaftarsaya"
+        redirectPath0="/detaildaftarsaya"
+      />
       <Footer />
     </div>
   );

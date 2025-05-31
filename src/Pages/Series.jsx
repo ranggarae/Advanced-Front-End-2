@@ -5,24 +5,34 @@ import Genre from '../Components/Genre';
 import MoviesContinue from '../Components/MoviesContinue';
 import Movies from '../Components/Movies';
 import Footer from '../Components/Footer';
-import ListMovies from '../Data/ListMovies.json';
-import ListContinue from '../Data/ListContinue.json';
+import { useEffect, useState } from 'react';
+import { getListMovies } from '../services/api/ListMoviesApi';
+import { getListContinue } from '../services/api/ListContinueApi';
 
-const shuffleArray = (array) => {
-  const shuffled = [...array];
-  for (let i = shuffled.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-  }
-  return shuffled;
-};
 
 function Series() {
-  const shuffledMovies0 = shuffleArray(ListMovies);
-  const shuffledMovies1 = shuffleArray(ListMovies);
-  const shuffledMovies2 = shuffleArray(ListMovies);
-  const shuffledMovies3 = shuffleArray(ListMovies);
-  const shuffledMovies4 = shuffleArray(ListMovies);
+  const [movies, setMovies] = useState([]);
+  const [continueMovies, setContinueMovies] = useState([]);
+
+  useEffect(() => {
+    getListMovies().then((data) => setMovies(data));
+    getListContinue().then((data) => setContinueMovies(data));
+  }, []);
+
+  const shuffleArray = (array) => {
+    const shuffled = [...array];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
+  };
+
+  const shuffledMovies0 = shuffleArray(movies);
+  const shuffledMovies1 = shuffleArray(movies);
+  const shuffledMovies2 = shuffleArray(movies);
+  const shuffledMovies3 = shuffleArray(continueMovies);
+  const shuffledMovies4 = shuffleArray(movies);
 
   return (
     <>
@@ -55,5 +65,6 @@ function Series() {
     </>
   );
 }
+
 
 export default Series;
